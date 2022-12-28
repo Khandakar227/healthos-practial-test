@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import {FcGoogle } from 'react-icons/fc'
 import {FaFacebookSquare } from 'react-icons/fa'
+import Input from '../components/common/Input'
 
 function Login() {
   return (
@@ -15,8 +16,8 @@ function Login() {
             {/* Login Form */}
 
             <form>
-                <input className='my-3 p-4 rounded-xl bg-gray-100 outline-none hover:bg-slate-200 focus:bg-slate-200 w-full' type='number' name='phone' placeholder='Phone Number'/>
-                <input className='my-3 p-4 rounded-xl bg-gray-100 outline-none hover:bg-slate-200 focus:bg-slate-200 w-full' type='password'  name='password' placeholder='Password'/>
+                <Input type='number' name='phone' placeholder='Phone Number' />
+                <Input type='password'  name='password' placeholder='Password' />
                 <button className='my-3 font-bold bg-black rounded-xl text-white w-full py-4 px-8'> Login </button>
             </form>
             <button className='mt-8 font-bold'> Forgot Password? </button>

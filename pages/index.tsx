@@ -5,14 +5,14 @@ import useSWR from "swr";
 import fetcher from "../lib/fetcher";
 import Product from "../components/common/ProductCard";
 import Loader from "../components/common/Loader";
+import IconContent from "../components/Home/IconContent";
+
 
 export default function Home() {
   const { data, error, isLoading } = useSWR(
     "https://fakestoreapi.com/products?limit=8",
     fetcher
   );
-  console.log(data);
-
   return (
     <>
       <Head>
@@ -25,12 +25,27 @@ export default function Home() {
         <Category />
 
         <div className="w-full">
+
+          <div className="shadow rounded-md relative overflow-hidden">
+            <img className="w-full" src="/assets/carousel-img-1.png" alt="Hero section" />
+          </div>
+
+          <h2 className="text-3xl md:text-4xl font-bold mt-16 mb-8">
+            ⛄ Winter Collection
+          </h2>
+
           <div className="hero-section hs-2 my-8 shadow rounded-md py-16 md:py-24 px-4 bg-[#cc0023] text-white">
             <h2 className="font-bolder md:text-5xl text-4xl">
               <span className="bg-slate-50-300">WINTER</span> IS
               <br /> <del className="DEL">COMING</del> HERE.
             </h2>
           </div>
+
+
+          <h2 className="text-3xl md:text-4xl font-bold mt-16 mb-8">
+            💯 Exclusive
+          </h2>
+
           <div className="hero-section hs-1 my-8 shadow rounded-md py-16 md:py-24 px-4 bg-slate-100 text-right">
             <h2 className="font-bolder md:text-5xl text-4xl">
               LET'S EXPLORE <br />
@@ -42,25 +57,7 @@ export default function Home() {
             🔥 Hot sale
           </h2>
           <div className="p-4">
-            <div className="sm:block lg:flex items-center border shadow rounded-md justify-between w-full">
-              <img
-                src="/assets/shoe.png"
-                alt="Shoe"
-                className="w-full sm:max-w-[300px] lg:max-w-[500px] mx-auto"
-              />
-              <div className="py-8 px-4 flex-auto mx-auto lg:text-left text-center">
-                <h2 className="font-bold text-lg py-3"> Nike Air Jordan </h2>
-                <p className="py-1"> Shoes </p>
-                <p className="pt-1 font-bold"> BDT: 800 </p>
-                <p>
-                  <del>BDT: 1500</del> &nbsp; -
-                  {Math.round(((1500 - 800) * 100) / 1500)}%
-                </p>
-                <button className="px-2 py-4 rounded-md shadow my-8 bg-yellow-300 font-bold">
-                  Buy Now
-                </button>
-              </div>
-            </div>
+            <img className="w-full shadow rounded-md" src="/assets/carousel-img-2.png" alt="new jordan"/>
           </div>
 
           <div className="my-12">
@@ -72,14 +69,16 @@ export default function Home() {
               {data?.map((product: any) => (
                 <Product
                   key={product.title + product.id}
-                  name={product.title}
+                  id={product.id}
+                  title={product.title}
                   category={product.category}
                   image={product.image}
-                  price={product.price}
+                  price={product.price*80}
                   rating={product.rating.rate}
                 />
               ))}
             </div>
+            <IconContent />
           </div>
         </div>
       </div>

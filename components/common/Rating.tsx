@@ -1,4 +1,3 @@
-import React from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 
 function Rating({
@@ -16,9 +15,9 @@ function Rating({
         .fill(1)
         .map((_, i) =>
           rating / (i + 1) >= 1 ? (
-            <FaStar key={`star ${i + 1}`} fill="gold" />
+            <FaStar className={className} key={`star ${i + 1}`} fill="gold" />
           ) : (i+1) - rating < 1 ? (
-            <FaStarHalf key={`star ${i + 1}`} fill="gold" />
+            <FaStarHalf className={className} key={`star ${i + 1}`} fill="gold" />
           ) : (
             ""
           )

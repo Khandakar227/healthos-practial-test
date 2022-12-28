@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import {FcGoogle } from 'react-icons/fc'
 import {FaFacebookSquare } from 'react-icons/fa'
+import Input from '../components/common/Input'
 
 export default function Register() {
   return (
@@ -15,11 +16,11 @@ export default function Register() {
             {/* Register Form */}
             
             <form>
-                <input className='my-3 p-4 rounded-xl bg-gray-100 outline-none hover:bg-slate-200 focus:bg-slate-200 w-full'type='text' name='firstname' placeholder='First Name'/>
-                <input className='my-3 p-4 rounded-xl bg-gray-100 outline-none hover:bg-slate-200 focus:bg-slate-200 w-full' type='text' name='lastname' placeholder='Last Name'/>
-                <input className='my-3 p-4 rounded-xl bg-gray-100 outline-none hover:bg-slate-200 focus:bg-slate-200 w-full' type='number' name='phone' placeholder='Phone Number'/>
-                <input className='my-3 p-4 rounded-xl bg-gray-100 outline-none hover:bg-slate-200 focus:bg-slate-200 w-full' type='password' name='password' placeholder='Password'/>
-                <input className='my-3 p-4 rounded-xl bg-gray-100 outline-none hover:bg-slate-200 focus:bg-slate-200 w-full' type='password' name='confirm_password' placeholder='Confirm Password'/>
+                <Input type='text' name='firstname' placeholder='First Name' />
+                <Input type='text' name='lastname' placeholder='Last Name' />
+                <Input type='number' name='phone' placeholder='Phone Number' />
+                <Input type='password' name='password' placeholder='Password' />
+                <Input type='password' name='confirm_password' placeholder='Confirm Password' />
                 <button className='my-3 font-bold bg-black rounded-xl text-white w-full py-4 px-8'> Login </button>
             </form>
             <div className='flex items-center justify-center gap-4 mt-16 my-8'>
