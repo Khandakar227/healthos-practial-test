@@ -1,18 +1,18 @@
-import { ReactNode, createContext, useContext, useState } from "react";
-
-type CartProps = {
-  product_id: string | number | any;
-  title: string;
-  price: number;
-  image: string;
-  quantity: number;
-};
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { CartProps } from "../components/cart/CartItem";
 
 type CartContextProps = {
-  addToCart: (cartItem: CartProps)=> void;
-  removeFromCart: (cartItemId: string | number)=>void;
-  updateQuantity: (index: number, quantity: number)=>void;
+  addToCart: (cartItem: CartProps) => void;
+  removeFromCart: (cartItemId: string | number) => void;
+  updateQuantity: (index: number, quantity: number) => void;
   cart: CartProps[];
+  totalItems: number;
 };
 
 export const cartContext = createContext({} as CartContextProps);
@@ -27,6 +27,7 @@ export default function CartProvider({
   children?: ReactNode | ReactNode[];
 }) {
   const [cart, setCart] = useState([] as CartProps[]);
+  const [totalItems, setTotalItems] = useState(0);
 
   //Add items to cart
   function addToCart(cartItem: CartProps) {
@@ -41,26 +42,42 @@ export default function CartProvider({
         }
       });
       if (!exist) cartItems.push(cartItem);
+      setTotalItems(cartItem.quantity)
       return cartItems;
     });
   }
+
   //Remove items from cart
   function removeFromCart(cartItemId: string | number) {
     setCart((cartItems) =>
-      cartItems.filter((item) => item.product_id != cartItemId)
+      cartItems.filter((item) => {
+        
+        if (item.product_id == cartItemId) {
+          const newTotal = totalItems - item.quantity
+          setTotalItems(newTotal)
+        }
+
+      return item.product_id != cartItemId
+      })
     );
   }
 
+  //Increment or decrement quantity
   function updateQuantity(index: number, quantity: number) {
     setCart((cartItems) => {
-      cartItems[index].quantity = quantity;
+      if (cartItems[index].quantity == 0 && quantity < 0) return cartItems;
+      cartItems[index].quantity += quantity;
+
+      const newTotal = totalItems + quantity;
+      setTotalItems(newTotal)
+
       return cartItems;
     });
   }
 
   return (
     <cartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateQuantity }}
+      value={{ cart, addToCart, removeFromCart, updateQuantity, totalItems }}
     >
       {children}
     </cartContext.Provider>

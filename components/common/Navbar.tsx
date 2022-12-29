@@ -4,10 +4,11 @@ import Link from "next/link";
 import { FaOpencart, FaBars } from "react-icons/fa";
 import Searchbar from "./Search";
 import "react-modern-drawer/dist/index.css";
+import { useCart } from "../../context/cart";
 
 function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
+  const { cart } = useCart()
   useEffect(() => {
     setIsDrawerOpen(false);
   }, []);
@@ -33,7 +34,8 @@ function Navbar() {
         </button>
         
         <div className="md:flex gap-8 hidden">
-          <Link href="/cart" className="flex gap-4 items-center mx-4">
+          <Link href="/cart" className="flex gap-4 items-center mx-4 relative">
+            {cart.length ? <span className="text-white bg-red-500 absolute rounded-full text-xs top-0 px-1 left-[4.5rem]"> {cart.length} </span> : ""}
             <FaOpencart /> <span className="font-bold"> Cart </span>
           </Link>
           <div className="flex">

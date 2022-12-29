@@ -21,7 +21,6 @@ function ProductCard({ id, image, title, category, price, rating }: ProductType)
   
   const toCart = () => {
     addToCart({ product_id: id, image, title,price, quantity: 1  })
-    console.log(cart)
     toast.info("1 item added to the cart 🛒", {
       position: "top-right",
       autoClose: 5000,
