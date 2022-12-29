@@ -48,7 +48,7 @@ export default function Home() {
 
           <div className="hero-section hs-1 my-8 shadow rounded-md py-16 md:py-24 px-4 bg-slate-100 text-right">
             <h2 className="font-bolder md:text-5xl text-4xl">
-              LET'S EXPLORE <br />
+              {"LET'S EXPLORE"} <br />
               <span className="bg-yellow-300">UNIQUE</span> <br /> CLOTHES.
             </h2>
           </div>
