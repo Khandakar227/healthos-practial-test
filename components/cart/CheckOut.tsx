@@ -12,7 +12,7 @@ function CheckOut() {
       newTotalPrice += item.price * item.quantity
     });
 
-    return newTotalPrice;
+    return newTotalPrice.toFixed(2);
   }, [totalItems]);
 
   return (
